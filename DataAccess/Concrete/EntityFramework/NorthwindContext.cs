@@ -13,5 +13,17 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Personel> Personels { get; set; }
+        public DbSet<Order> Orders{ get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Fluent Mapping
+            modelBuilder.Entity<Personel>().ToTable("Employees");
+            modelBuilder.Entity<Personel>().Property("Id").HasColumnName("EmployeeId");
+            modelBuilder.Entity<Personel>().Property("Name").HasColumnName("FirstName");
+            modelBuilder.Entity<Personel>().Property("Surname").HasColumnName("LastName");
+        }
     }
 }
