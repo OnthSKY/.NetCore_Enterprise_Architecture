@@ -11,7 +11,8 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
-            ListProducts(productManager);
+            
+            //ListProducts(productManager);
             //productManager.Add(new Product
             //{
             //    ProductId = 10,
@@ -29,6 +30,14 @@ namespace ConsoleUI
             //    ProductId = 10
             //});
             //ListProducts(productManager);
+        }
+
+        private static void ListProductsByPrice(ProductManager productManager)
+        {
+            foreach (var p in productManager.GetByUnitPrice(10, 100))
+            {
+                Console.WriteLine(p.ProductName);
+            }
         }
 
         private static void ListProducts(ProductManager productManager)
