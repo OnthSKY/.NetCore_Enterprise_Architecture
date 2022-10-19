@@ -7,7 +7,7 @@ namespace Business.Abstract
     {
         List<Product> GetAll();
         List<Product> GetAllByCategory(int desiredCategoryId);
-
+        List<Product> GetByUnitPrice(int min, int max);
         void Add(Product product);
         void Delete(Product product);
         void Update(Product product);
