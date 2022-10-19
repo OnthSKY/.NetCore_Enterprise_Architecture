@@ -8,6 +8,12 @@ namespace Business.Constants
 {
     public static class Messages
     {
-        public static string ListedProduct = "All Product has listed Successfully";
+        public static string ListedProducts = "All Product has listed Successfully";
+        public static string ListedPersonels = "All Personel has listed Successfully";
+        public static string ListedCategroies = "All Categories has listed Successfully";
+
+        public static string AddedProduct = "The Product has Added";
+        public static string UpdatedProduct = "The Product has Deleted";
+        public static string DeletedProduct = "The Product has Updated";
     }
 }

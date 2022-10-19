@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -14,40 +16,43 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
-        public void Add(Product product)
+        public IResult Add(Product product)
         {
             _productDal.Add(product);
+            return new SuccessResult(Messages.AddedProduct);
         }
 
-        public void Delete(Product product)
+        public IResult Delete(Product product)
         {
             _productDal.Delete(product);
+            return new SuccessResult(Messages.DeletedProduct);
         }
 
-        public List<Product> GetAll()
+        public IDataResult<List<Product>> GetAll()
         {
-            return _productDal.GetAll();
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ListedProducts);
 
         }
 
-        public List<Product> GetAllByCategory(int desiredCategoryId)
+        public IDataResult<List<Product>> GetAllByCategory(int desiredCategoryId)
         {
-            return _productDal.GetAll(p=>p.CategoryId == desiredCategoryId);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p=>p.CategoryId == desiredCategoryId), Messages.ListedProducts);
         }
 
-        public List<Product> GetByUnitPrice(int min, int max)
+        public IDataResult<List<Product>> GetByUnitPrice(int min, int max)
         {
-            return _productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max), Messages.ListedProducts);
         }
 
-        public List<ProductDetailDto> GetProductDetails()
+        public IDataResult<List<ProductDetailDto>> GetProductDetails()
         {
-            return _productDal.GetProductsDetail();
+            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductsDetail(), Messages.ListedProducts);
         }
 
-        public void Update(Product product)
+        public IResult Update(Product product)
         {
             _productDal.Update(product);
+            return new SuccessResult(Messages.UpdatedProduct);
         }
     }
 }
