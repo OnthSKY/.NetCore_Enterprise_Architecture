@@ -50,14 +50,6 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public List<Product> GetAllByCategory(int desiredCategoryId)
-        {
-            using (NorthwindContext context = new NorthwindContext())
-            {
-                return context.Set<Product>().Where(p => p.CategoryId == desiredCategoryId).ToList();
-            }
-        }
-
         public void Update(Product entity)
         {
             using (NorthwindContext context = new NorthwindContext())
