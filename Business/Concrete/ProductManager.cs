@@ -1,9 +1,11 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System.Collections.Generic;
 
 namespace Business.Concrete
@@ -18,6 +20,15 @@ namespace Business.Concrete
 
         public IResult Add(Product product)
         {
+            var context = new ValidationContext<Product>(product);
+            ProductValidator validator = new ProductValidator();
+            var result = validator.Validate(context);
+
+            if (!result.IsValid)
+            {
+                throw new ValidationException(result.Errors);
+            }
+
             _productDal.Add(product);
             return new SuccessResult(Messages.AddedProduct);
         }
