@@ -59,6 +59,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductsDetail(), Messages.ListedProducts);
         }
 
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Update(Product product)
         {
             _productDal.Update(product);
