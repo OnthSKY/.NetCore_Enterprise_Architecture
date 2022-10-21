@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,5 +24,8 @@ namespace Business.Constants
         public static string ProductNameAlreadyExist = "Product name already has use";
 
         public static string CategoryLimitExceded = "New product has not added because of category limit exceeded";
+
+        public static string AuthorizationDenied = "You dont have a permissin";
+
     }
 }
