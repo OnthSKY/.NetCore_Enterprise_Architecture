@@ -17,5 +17,11 @@ namespace Business.Constants
         public static string DeletedProduct = "The Product has Updated";
 
         public static string FoundProduct = "Product has found Successfully";
+
+        public static string ProductCountOfCategoryLimit = "Category limit has over";
+
+        public static string ProductNameAlreadyExist = "Product name already has use";
+
+        public static string CategoryLimitExceded = "New product has not added because of category limit exceeded";
     }
 }
