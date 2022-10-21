@@ -10,7 +10,7 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            ListProductsDetails();
+            //ListProductsDetails();
 
             //ListCategories();
             // ListPersonels();
@@ -18,7 +18,7 @@ namespace ConsoleUI
 
         }
 
-        private static void ListProductsDetails()
+       /* private static void ListProductsDetails()
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
             foreach (var p in productManager.GetProductDetails().Data)
@@ -63,6 +63,6 @@ namespace ConsoleUI
                 Console.WriteLine($"{p.ProductId} / {p.ProductName}");
             }
             Console.WriteLine("------------------");
-        }
+        }*/
     }
 }
