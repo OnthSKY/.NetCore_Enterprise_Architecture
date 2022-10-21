@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -27,5 +28,12 @@ namespace Business.Constants
 
         public static string AuthorizationDenied = "You dont have a permissin";
 
+        public static string UserRegistered = "User has registered Success";
+
+        public static User UserNotFound { get; internal set; }
+        public static User PasswordError { get; internal set; }
+        public static string SuccessfulLogin { get; internal set; }
+        public static string UserAlreadyExists { get; internal set; }
+        public static string AccessTokenCreated { get; internal set; }
     }
 }
