@@ -2,15 +2,11 @@
 
 namespace Core.Utilities.Security.Encryption
 {
-    public partial class SecurityKeyHelper
+    public class SigningCredentialsHelper
     {
-        public class SigningCredentialsHelper
+        public static SigningCredentials CreateSigningCredentials(SecurityKey securityKey)
         {
-            public static SigningCredentials CreateSigningCredentials(SecurityKey securityKey)
-            {
-                return new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512Signature);
-            }
+            return new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512Signature);
         }
-
     }
 }
