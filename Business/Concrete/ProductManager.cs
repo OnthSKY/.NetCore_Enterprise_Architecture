@@ -2,6 +2,7 @@
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
@@ -25,6 +26,7 @@ namespace Business.Concrete
             _categoryService = categoryService;
         }
 
+        [CacheRemoveAspect("IProductService.Get")]
         [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
@@ -40,12 +42,14 @@ namespace Business.Concrete
             return new SuccessResult(Messages.AddedProduct);
         }
 
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Delete(Product product)
         {
             _productDal.Delete(product);
             return new SuccessResult(Messages.DeletedProduct);
         }
 
+        [CacheAspect]
         public IDataResult<List<Product>> GetAll()
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ListedProducts);
@@ -57,6 +61,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == desiredCategoryId), Messages.ListedProducts);
         }
 
+        [CacheAspect]
         public IDataResult<Product> GetById(int desiredProductId)
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == desiredProductId), Messages.FoundProduct);
@@ -72,6 +77,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductsDetail(), Messages.ListedProducts);
         }
 
+        [CacheRemoveAspect("IProductService.Get")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Update(Product product)
         {
@@ -79,6 +85,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.UpdatedProduct);
         }
 
+        /* --- BUSINESS CODES --- */ 
         private IResult CheckIfProductCountOfCategoryCorrect(int categoryId)
         {
             var result = _productDal.GetAll(p => p.CategoryId == categoryId).Count;
