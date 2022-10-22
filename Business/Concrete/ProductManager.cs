@@ -30,7 +30,7 @@ namespace Business.Concrete
         public IResult Add(Product product)
         {
             IResult result = BusinessRules.Run(CheckIfProductCountOfCategoryCorrect(product.CategoryId),
-                CheckIfProductNameExist(product.ProductName), CheckIfCategoryLimitExceded());
+                CheckIfProductNameExist(product.ProductName));
 
             if (result != null)
             {
