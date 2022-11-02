@@ -72,7 +72,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max), Messages.ListedProducts);
         }
 
-        public IDataResult<List<ProductDetailDto>> GetProductDetails()
+        public IDataResult<List<ProductDetailDto>> GetProductsDetails()
         {
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductsDetail(), Messages.ListedProducts);
         }
