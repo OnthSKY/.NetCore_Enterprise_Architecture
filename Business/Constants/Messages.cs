@@ -30,10 +30,10 @@ namespace Business.Constants
 
         public static string UserRegistered = "User has registered Success";
 
-        public static User UserNotFound { get; internal set; }
-        public static User PasswordError { get; internal set; }
-        public static string SuccessfulLogin { get; internal set; }
-        public static string UserAlreadyExists { get; internal set; }
-        public static string AccessTokenCreated { get; internal set; }
+        public static string UserNotFound = "User Not Found";
+        public static string PasswordError = "Email or Password is not correct";
+        public static string SuccessfulLogin = "Login has done Successfully";
+        public static string UserAlreadyExists = "User Already Exist";
+        public static string AccessTokenCreated = "Token has created Successfully";
     }
 }
