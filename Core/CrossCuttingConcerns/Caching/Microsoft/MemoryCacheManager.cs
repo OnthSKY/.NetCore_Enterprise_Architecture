@@ -14,17 +14,11 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
     {
         //Adapter pattern
         // enjections has added in Core.DependecyResolvers.CoreModule 
-        IMemoryCache _memoryCache;
-
+        private IMemoryCache _memoryCache;
         public MemoryCacheManager()
         {
             _memoryCache = ServiceTool.ServiceProvider.GetService<IMemoryCache>();
         }
-        public void Add(string key, object value, int duration)
-        {
-            _memoryCache.Set(key, value, TimeSpan.FromMinutes(duration));
-        }
-
         public T Get<T>(string key)
         {
             return _memoryCache.Get<T>(key);
@@ -32,14 +26,18 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
 
         public object Get(string key)
         {
-            //type conversion neccessary
-            return Get(key);
+            return _memoryCache.Get(key);
+        }
+
+        public void Add(string key, object data, int duration)
+        {
+            _memoryCache.Set(key, data, TimeSpan.FromMinutes(duration));
         }
 
         public bool IsAdd(string key)
         {
             // we dont want to get value after the method so we use 'out _' 
-            return _memoryCache.TryGetValue(key,out _);
+            return _memoryCache.TryGetValue(key, out _);
         }
 
         public void Remove(string key)
